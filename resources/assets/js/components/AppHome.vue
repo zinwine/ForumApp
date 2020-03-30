@@ -1,7 +1,7 @@
 <template>
     <div>
         <toolbar/>
-            <h1>Home Page</h1>
+        <router-view></router-view>
         <foter/>
     </div>
 </template>
@@ -9,10 +9,12 @@
 <script>
 import toolbar from './ToolBar'
 import foter from './AppFooter'
+import login from './login/Login'
     export default {
         components: {
             toolbar,
-            foter
+            foter,
+            login
         }
     }
 </script>

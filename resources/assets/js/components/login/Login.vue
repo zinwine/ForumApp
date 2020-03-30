@@ -40,13 +40,7 @@
         },
         methods: {
             login(){
-                axios.post('/api/auth/login')
-                .then( (res) => {
-                    alert(res.data)
-                })
-                .cath( (err) => {
-                    alert(err.data)
-                })
+                User.login(this.form)
             }
         }
     }

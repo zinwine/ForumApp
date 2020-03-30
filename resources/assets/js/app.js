@@ -14,6 +14,13 @@ import Vuetify from 'vuetify'
  
 Vue.use(Vuetify)
 
+// ************** Helper User ***************
+
+import User from './helpers/User'
+window.User = User
+
+console.log(User.id())
+
 // ************** Vue Router ***********
 import router from './router/router'
 

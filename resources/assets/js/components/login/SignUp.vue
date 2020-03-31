@@ -1,12 +1,16 @@
 <template>
     <v-container>
         <div class="row justify-content-center">
-            <form class="col-md-6" @submit.prevent="login">
-            <h3 color="green" class="text-center">LOGIN</h3>
+            <form class="col-md-6" @submit.prevent="signUp">
+            <h3 color="green" class="text-center">SignUp</h3>
+                <v-text-field
+                v-model="form.name"
+                label="Name"
+                ></v-text-field>
                 <v-text-field
                 v-model="form.email"
                 label="E-mail"
-                required
+                type="email"
                 ></v-text-field>
                 <v-text-field
                 v-model="form.password"
@@ -14,20 +18,24 @@
                 type="password"
                 required
                 ></v-text-field>
+                <v-text-field
+                v-model="form.password_confirmation"
+                label="Confirm Password"
+                type="password"
+                required
+                ></v-text-field>
                 
                 <v-btn 
-                    class="mr-4 bg-primary text-white"
+                    class="mr-4 bg-success text-white"
                     type="submit"
                     >
-                Login
+                SignUp
                 </v-btn>
-
-      <v-btn class="float-right"><router-link to="/sign-up">SignUp</router-link></v-btn>
+                <v-btn class="float-right"><router-link to="/login">Login</router-link></v-btn>
             </form>
         </div>
     </v-container>
 </template>
-
 
 <script>
 import User from '../../helpers/User'
@@ -35,8 +43,10 @@ import User from '../../helpers/User'
         data () {
             return {
                 form: {
+                    name : '',
                     email : '',
-                    password: ''
+                    password: '',
+                    password_confirmation: ''
                 },
                 errors: {}
             }
@@ -47,8 +57,8 @@ import User from '../../helpers/User'
             }
         },
         methods: {
-            login(){
-                User.login(this.form)
+            signUp(){
+                User.signUp(this.form)
             }
         }
     }

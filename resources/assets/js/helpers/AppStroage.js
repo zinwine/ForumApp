@@ -1,19 +1,25 @@
 class AppStorage{
-    store(token, user)
+    store(token, name, id)
     {
         localStorage.setItem('token', token)
-        localStorage.setItem('user', user)
+        localStorage.setItem('name', name)
+        localStorage.setItem('id', id)
     }
     clear(){
         localStorage.removeItem('token')
-        localStorage.removeItem('user')
+        localStorage.removeItem('name')
+        localStorage.removeItem('id')
     }
     getToken(){
         return localStorage.getItem('token')
     }
-    getUser()
+    getName()
     {
-        return localStorage.getItem('user')
+        return localStorage.getItem('name')
+    }
+    getId()
+    {
+        return localStorage.getItem('id')
     }
 }
 export default AppStorage = new AppStorage()

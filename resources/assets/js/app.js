@@ -14,6 +14,11 @@ import Vuetify from 'vuetify'
  
 Vue.use(Vuetify)
 
+// *******************************************
+
+import md from 'marked'
+window.md = md
+
 // **************** Custom Evevent ************
 
 window.EventBus = new Vue()

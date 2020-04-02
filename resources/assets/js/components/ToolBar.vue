@@ -1,8 +1,8 @@
 <template>
     <v-toolbar dense>
       <v-toolbar-title>ForumApp</v-toolbar-title>
-
       <v-spacer></v-spacer>
+      <app-notification />
     <div class="hidden-sm-and-down">
       <router-link style="text-decoration: none"
          v-for="item in items" 
@@ -17,6 +17,7 @@
 
 <script>
 import User from '../helpers/User'
+import AppNotification from './AppNotification'
     export default {
       data(){
         return {
@@ -29,6 +30,7 @@ import User from '../helpers/User'
             ]
         }
       },
+      components: { AppNotification },
       created(){
         EventBus.$on('logout', () => {
           if(User.loggedIn()){

@@ -12,7 +12,9 @@ window.Vue = require('vue');
 // ************** Vuetify **************
 import Vuetify from 'vuetify'
  
+import 'vuetify/dist/vuetify.min.css'
 Vue.use(Vuetify)
+
 
 // *******************************************
 

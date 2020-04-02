@@ -7,6 +7,7 @@
                     <v-divider></v-divider>
                     <v-card-text v-html="reply.reply"></v-card-text>
                 </v-list-item-content>
+                <like style="margin-right: 15px;" :likes="reply" />
                 <span v-if="own == reply.user_id">
                     <v-list-item-action style="margin-right: 7px">
                         <v-btn @click="replyUpdate(reply)" icon small>
@@ -27,6 +28,7 @@
 
 <script>
 import User from '../../helpers/User'
+import Like from '../like/Like'
     export default {
         props: ['reply', 'question'],
         data(){
@@ -34,6 +36,7 @@ import User from '../../helpers/User'
                 own: User.getId(),
             }
         },
+        components: { Like },
         methods: {
             replyUpdate(replyData){
                 EventBus.$emit('edit-reply', replyData)

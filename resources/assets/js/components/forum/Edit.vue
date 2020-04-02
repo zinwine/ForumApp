@@ -15,11 +15,13 @@
                 <vue-simplemde label='Question' v-model="form.body" ref="markdownEditor" />
                 
                 <v-card-actions>
-                    <v-btn type="submit" icon small>
+                    <v-btn style="margin-right: 20px;" type="submit">
                             <v-icon style="color: green">save</v-icon>
+                            <span style="margin-left: 3px;color: indigo">Save</span>
                     </v-btn>
-                    <v-btn icon small @click="cancelEdit">
+                    <v-btn @click="cancelEdit">
                         <v-icon style="color: black">cancel</v-icon>
+                        <span style="margin-left: 3px;color: teal">Cancel</span>
                     </v-btn>
                 </v-card-actions>
             </form>

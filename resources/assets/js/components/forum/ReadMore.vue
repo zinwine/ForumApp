@@ -19,6 +19,7 @@ import Edit from './Edit'
         created(){
             this.listen()
             this.getQuestion()
+            this.afterReload()
         },
         methods: {
             listen(){
@@ -37,6 +38,11 @@ import Edit from './Edit'
                 .catch( (err) => {
                     console.log(err.data)
                 })
+            },
+            afterReload(){
+                EventBus.$on('after-create', () => {
+                    this.getQuestion()
+                })       
             }
         }
     }

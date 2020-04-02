@@ -1,8 +1,9 @@
 <template>
     <v-container>
-        <div class="row justify-content-center">
-            <form class="col-md-6" @submit.prevent="signUp">
-            <h3 color="green" class="text-center">SignUp</h3>
+            <form  class="col-md-8 offset-md-2" @submit.prevent="signUp">
+            <div style="color: #fff;background: indigo;text-align:center;margin-bottom:20px">
+                <v-toolbar-title style="padding: 10px">SignUp</v-toolbar-title>
+            </div>
                 <v-text-field
                 v-model="form.name"
                 label="Name"
@@ -26,14 +27,13 @@
                 ></v-text-field>
                 
                 <v-btn 
-                    class="mr-4 bg-success text-white"
+                    style="background: indigo; color: white"
                     type="submit"
                     >
                 SignUp
                 </v-btn>
-                <v-btn class="float-right"><router-link to="/login">Login</router-link></v-btn>
+                <router-link style="text-decoration: none" to="/login"><v-btn style="color: indigo">Login</v-btn></router-link>
             </form>
-        </div>
     </v-container>
 </template>
 

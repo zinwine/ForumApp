@@ -53,6 +53,10 @@ class User {
         return this.id() == id
     }
 
+    admin(){
+        return this.id() == 12
+    }
+
 // ************** SignUp *************
     signUp(data){
         axios.post('/api/auth/signup', data)

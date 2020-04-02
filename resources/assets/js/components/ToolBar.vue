@@ -4,7 +4,7 @@
 
       <v-spacer></v-spacer>
     <div class="hidden-sm-and-down">
-      <router-link 
+      <router-link style="text-decoration: none"
          v-for="item in items" 
          :key="item.title"
           :to="item.to" >
@@ -23,7 +23,7 @@ import User from '../helpers/User'
             items: [
               { title: 'Forum', to: '/forum', show: true},
               { title: 'Ask Question', to: '/ask', show: User.loggedIn()},
-              { title: 'Category', to: '/category', show: User.loggedIn()},
+              { title: 'Category', to: '/category', show: User.loggedIn() && User.admin()},
               { title: 'Login', to: '/login', show: !User.loggedIn()},
               { title: 'Logout', to: '/logout', show: User.loggedIn()},
             ]

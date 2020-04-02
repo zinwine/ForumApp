@@ -1,15 +1,17 @@
 <template>
-    <v-container>
-        <div class="row">
-            <form class="col-md-6" @submit.prevent="update">
-            <h3 color="green" class="text-center">Edit Question</h3>
+    <v-container fluid>
+            <form class="col-md-8 offset-md-2" @submit.prevent="update">
+                            <v-card>
+                    <div style="color: #fff;background: indigo;text-align:center;margin-bottom:20px">
+                        <v-toolbar-title style="padding: 10px">Edit Question</v-toolbar-title>
+                    </div>
+                </v-card>
                 <v-text-field
                 v-model="form.title"
                 label="Title"
                 required
                 ></v-text-field>
                 <br>
-                <hr>
                 <vue-simplemde label='Question' v-model="form.body" ref="markdownEditor" />
                 
                 <v-card-actions>
@@ -21,7 +23,6 @@
                     </v-btn>
                 </v-card-actions>
             </form>
-        </div>
     </v-container>
 </template>
 

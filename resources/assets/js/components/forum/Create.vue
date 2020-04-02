@@ -1,19 +1,23 @@
 <template>
-    <v-container>
+    <v-container fluid>
         <div class="row">
-            <form class="col-md-6" @submit.prevent="create">
-            <h3 color="green" class="text-center">Ask Question</h3>
+            <form @submit.prevent="create" class="col-md-8 offset-md-2">
+            <!-- <h3 style="text-align:center; color: teal">Ask Question</h3> -->
+                <v-card>
+                    <div style="margin-bottom: 20px;color: #fff;background: indigo;text-align:center">
+                        <v-toolbar-title style="padding: 10px">Ask Question</v-toolbar-title>
+                    </div>
+                </v-card>
                 <v-text-field
                 v-model="form.title"
                 label="Title"
                 required
                 ></v-text-field>
                 <br>
-                <label for="category">Category</label>
-                <select style="width: 100%" name="" id="category" v-model="form.category_id">
+                <select style="width: 100%;margin-bottom: 50px" v-model="form.category_id">
+                    <option>Select One</option>
                     <option :value="category.id" v-for="category in categoies" :key="category.id">{{  category.name  }}</option>
                 </select>
-                <hr>
                 <!-- <v-select
                 :items="categoies"
                 item-text="name"
@@ -21,17 +25,10 @@
                 v-model="form.category_id"
                 label="Category"
                 ></v-select> -->
-                <!-- <v-text-field
-                v-model="form.body"
-                label="Question"
-                required
-                ></v-text-field> -->
-                <br>
-                <hr>
                 <vue-simplemde label='Question' v-model="form.body" ref="markdownEditor" />
                 
                 <v-btn 
-                    class="mr-4 bg-primary text-white"
+                    style="background: indigo; color: white"
                     type="submit"
                     >
                 Ask Question

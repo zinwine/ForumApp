@@ -1,8 +1,9 @@
 <template>
-    <v-container>
-        <div class="row justify-content-center">
-            <form class="col-md-6" @submit.prevent="login">
-            <h3 color="green" class="text-center">LOGIN</h3>
+    <v-container fluid>
+            <form class="col-md-8 offset-md-2" @submit.prevent="login">
+            <div style="color: #fff;background: indigo;text-align:center;margin-bottom:20px">
+                <v-toolbar-title style="padding: 10px">Login</v-toolbar-title>
+            </div>
                 <v-text-field
                 v-model="form.email"
                 label="E-mail"
@@ -16,15 +17,14 @@
                 ></v-text-field>
                 
                 <v-btn 
-                    class="mr-4 bg-primary text-white"
+                    style="background: indigo; color: white"
                     type="submit"
                     >
                 Login
                 </v-btn>
 
-      <v-btn class="float-right"><router-link to="/sign-up">SignUp</router-link></v-btn>
+      <router-link style="text-decoration: none" to="/sign-up"><v-btn style="color: indigo">SignUp</v-btn></router-link>
             </form>
-        </div>
     </v-container>
 </template>
 

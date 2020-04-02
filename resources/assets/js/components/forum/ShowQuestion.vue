@@ -5,11 +5,11 @@
                 <div>
                     <v-list-item-title style="color: teal">
                         {{ data.title }}
-                        <v-list-item-subtitle  style="color: #777">{{ data.user }} Said {{ data.crated_at }}</v-list-item-subtitle>
+                        <v-list-item-subtitle  style="color: #777">{{ data.user_name }} Said {{ data.crated_at }}</v-list-item-subtitle>
                     </v-list-item-title>
                 </div>
                 <v-spacer></v-spacer>
-                <v-btn style="background: teal;color: #fff">5 Replies</v-btn>
+                <v-btn style="background: indigo;color: #fff">5 Replies</v-btn>
             </v-card-title>
             <v-card-text v-html="body"></v-card-text>
             <v-card-actions v-if="this.own == data.user_id">

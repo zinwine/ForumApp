@@ -32,7 +32,7 @@
                             <v-icon style="color: teal">add</v-icon><span style="margin-left: 3px;text-decoration: none">New Reply</span>
                     </v-btn>
                 </div>
-                <reply :question="data.slug" :reply="reply" v-for="reply in data.replies" :key="reply.id" />
+                <reply :question="data" :reply="reply" v-for="reply in data.replies" :key="reply.id" />
             </v-card>
         </v-container>
 </template>
@@ -59,6 +59,7 @@ import Reply from '../reply/Reply'
             }
         },
         created(){
+            this.listen() 
             this.cancelReply()
             this.editReply()
         },
@@ -88,6 +89,13 @@ import Reply from '../reply/Reply'
                     this.reply_data = replyData
                 })
             },
+            listen(){
+                Echo.private('App.User.' + User.id())
+                .notification((notification) => {
+                    console.log(this.data.replies)
+                    this.data.replies.unshift(notification.reply);
+                });
+            }
             
         }
     }

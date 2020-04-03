@@ -15,7 +15,7 @@
                         </v-btn>
                     </v-list-item-action>
                     <v-list-item-action>
-                        <v-btn @click="deleteReply(question,reply.id)" icon small>
+                        <v-btn @click="deleteReply(question.slug,reply.id)" icon small>
                             <v-icon style="color: red">delete</v-icon>
                         </v-btn>
                     </v-list-item-action>
@@ -36,15 +36,37 @@ import Like from '../like/Like'
                 own: User.getId(),
             }
         },
+        created(){
+            this.listen()
+        },
         components: { Like },
         methods: {
             replyUpdate(replyData){
                 EventBus.$emit('edit-reply', replyData)
             },
              deleteReply(slug, id){
+                //  console.log(this.question)
                 axios.delete(`/api/question/${slug}/reply/${id}`)
                 .then( res =>  EventBus.$emit('after-create')  )
+            },
+            listen(){
+                Echo.channel('deleteReplyChannel')
+                .listen('DeleteReplyEvent', (e) => {
+                    for (let index = 0; index < this.question.replies.length; index++) {
+                        if(this.question.replies[index].id == e.id){
+                            this.question.replies.splice(index, 1)
+                        }
+                    }
+                });
+
+                // Echo.private('App.User.' + User.id())
+                // .notification((notification) => {
+                //     console.log(this.question.replies);
+                //     // this.question.replies.unshift(notification.reply);
+                // });
+
             }
+
         }
     }
 </script>

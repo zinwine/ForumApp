@@ -43,7 +43,15 @@ import Edit from './Edit'
                 EventBus.$on('after-create', () => {
                     this.getQuestion()
                 })       
-            }
+            },
+            // listen(){
+            //      Echo.private('App.User.' + User.id())
+            //     .notification((notification) => {
+            //         console.log(this.question.replies);
+            //         // this.question.replies.unshift(notification.reply);
+            //     });
+
+            // }
         }
     }
 </script>

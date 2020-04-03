@@ -29,6 +29,7 @@
 
 <script>
 import VueSimplemde from 'vue-simplemde'
+import User from '../../helpers/User'
     export default {
         props: ['data', 'edit_mode', 'reply'],
         data(){
@@ -41,6 +42,9 @@ import VueSimplemde from 'vue-simplemde'
         },
         components: {
             VueSimplemde
+        },
+        created(){
+            // this.listen()
         },
         methods: {
             updateReply(id){
@@ -62,6 +66,13 @@ import VueSimplemde from 'vue-simplemde'
             },
             cancelEdit(){
                 EventBus.$emit('cancel-reply') 
+            },
+            listen(){
+                Echo.private('App.User.' + User.id())
+                .notification((notification) => {
+                    // console.log(this.data.replies);
+                    this.data.replies.unshift(notification.reply);
+                });
             }
             
         }

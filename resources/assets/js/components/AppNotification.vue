@@ -1,9 +1,12 @@
 <template>
   <div class="text-center">
-        <v-btn icon @click="showMenu">
+      <!-- <v-menu offset-y> -->
+      <!-- <template v-slot:activator="{ on }"> -->
+        <v-btn icon>
             <v-icon style="color: red">add_alert</v-icon>
         </v-btn>
-    <div v-if="showMe">
+        <!-- </template> -->
+    <!-- <div v-if="showMe">
       <v-list>
         <v-list-item>
           <v-list-item-content>
@@ -11,7 +14,7 @@
           </v-list-item-content>
         </v-list-item>
     </v-list>
-    </div>
+    </div> -->
   </div>
 </template>
 

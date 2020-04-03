@@ -14,7 +14,7 @@ import login from './login/Login'
         components: {
             toolbar,
             foter,
-            login
+            login,
         }
     }
 </script>

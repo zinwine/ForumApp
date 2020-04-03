@@ -3,6 +3,10 @@ import VueRouter from 'vue-router'
 
 // ******************** AUTHORIZATION ROUTE *********************
 
+import Parallax from '../components/Parallax'
+
+// ******************** AUTHORIZATION ROUTE *********************
+
 import Login from '../components/login/Login'
 import SignUp from '../components/login/SignUp'
 import Logout from '../components/login/Logout'
@@ -22,6 +26,9 @@ import CategoryCreate from '../components/category/Create'
 Vue.use(VueRouter)
 
 const routes = [
+   // ******************** Home Parallax COMPONENT *********************
+   { path: '/', component: Parallax },
+
   // ******************** AUTHORIZATION COMPONENT *********************
     { path: '/login', component: Login },
     { path: '/sign-up', component: SignUp },

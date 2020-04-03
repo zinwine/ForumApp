@@ -1,14 +1,14 @@
 <template>
-    <v-toolbar dense>
-      <v-toolbar-title>ForumApp</v-toolbar-title>
+    <v-toolbar dense style="background: indigo;color: #fff">
+      <v-toolbar-title><router-link style="text-decoration: none;color: #fff" to="/">ForumApp</router-link></v-toolbar-title>
       <v-spacer></v-spacer>
       <app-notification />
     <div class="hidden-sm-and-down">
-      <router-link style="text-decoration: none"
+      <router-link style="text-decoration: none;"
          v-for="item in items" 
          :key="item.title"
           :to="item.to" >
-        <v-btn text v-if="item.show">{{ item.title }}</v-btn>
+        <v-btn style="color: #fff" text v-if="item.show">{{ item.title }}</v-btn>
       </router-link>
 
     </div>

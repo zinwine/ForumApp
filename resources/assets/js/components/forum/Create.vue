@@ -30,6 +30,7 @@
                 <v-btn 
                     style="background: indigo; color: white"
                     type="submit"
+                    :disabled="disable"
                     >
                 Ask Question
                 </v-btn>
@@ -45,14 +46,19 @@ import VueSimplemde from 'vue-simplemde'
             return{
                 categoies: [],
                 form: {
-                    title: '',
-                    category_id: '',
-                    body:''
+                    title: null,
+                    category_id: null,
+                    body: null
                 }
             }
         },
         components: {
             VueSimplemde
+        },
+        computed: {
+            disable(){
+                return !(this.form.title && this.form.body && this.form.category_id)
+            }
         },
         created(){
             axios.get('/api/category')

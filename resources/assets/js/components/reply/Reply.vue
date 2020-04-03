@@ -34,6 +34,7 @@ import Like from '../like/Like'
         data(){
             return{
                 own: User.getId(),
+                sound: "http://soundbible.com/mp3/glass_ping-Go445-1207030150.mp3"
             }
         },
         created(){
@@ -49,9 +50,14 @@ import Like from '../like/Like'
                 axios.delete(`/api/question/${slug}/reply/${id}`)
                 .then( res =>  EventBus.$emit('after-create')  )
             },
+            playSound(){
+                let alertt = new Audio(this.sound)
+                alertt.play()
+            },
             listen(){
                 Echo.channel('deleteReplyChannel')
                 .listen('DeleteReplyEvent', (e) => {
+                    this.playSound()
                     for (let index = 0; index < this.question.replies.length; index++) {
                         if(this.question.replies[index].id == e.id){
                             this.question.replies.splice(index, 1)

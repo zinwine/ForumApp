@@ -15,7 +15,7 @@
                 <vue-simplemde label='Question' v-model="form.body" ref="markdownEditor" />
                 
                 <v-card-actions>
-                    <v-btn style="margin-right: 20px;" type="submit">
+                    <v-btn style="margin-right: 20px;" :disabled="disable" type="submit">
                             <v-icon style="color: green">save</v-icon>
                             <span style="margin-left: 3px;color: indigo">Save</span>
                     </v-btn>
@@ -42,6 +42,11 @@ import VueSimplemde from 'vue-simplemde'
         },
         components: {
             VueSimplemde
+        },
+        computed: {
+            disable(){
+                return !(this.form.title && this.form.body)
+            }
         },
         created(){
             this.form = this.data

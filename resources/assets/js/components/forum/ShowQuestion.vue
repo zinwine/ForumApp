@@ -14,7 +14,7 @@
                         <v-spacer></v-spacer>
                         <v-btn style="background: indigo;color: #fff">{{ data.replies.length }} Replies</v-btn>
                     </v-card-title>
-                    <v-card-text v-html="body"></v-card-text>
+                    <v-card-text>{{data.body}}</v-card-text>
                     <v-card-actions v-if="own == data.user_id">
                         <v-btn icon small>
                                 <v-icon style="color: orange" @click="editMode">edit</v-icon>
@@ -28,9 +28,12 @@
             <v-card style="margin: 20px" >
                 <div style="color: #fff;background: teal;text-align:center">
                     <v-toolbar-title style="padding: 10px">Replies</v-toolbar-title>
-                    <v-btn @click="newReply" small style="background: #fff; float: right; z-index: 1; margin: -40px 10px 0 0;">
+                    <v-btn v-if="loggIn" @click="newReply" small style="background: #fff; float: right; z-index: 1; margin: -40px 10px 0 0;">
                             <v-icon style="color: teal">add</v-icon><span style="margin-left: 3px;text-decoration: none">New Reply</span>
                     </v-btn>
+                    <router-link v-else to="/login" style="color: #fff; float: right; z-index: 1; margin: -35px 10px 0 0;text-decoration: none">Login to Reply
+                    <v-icon style="color : #fff">forward</v-icon>
+                    </router-link>
                 </div>
                 <reply :question="data" :reply="reply" v-for="reply in data.replies" :key="reply.id" />
             </v-card>
@@ -54,8 +57,13 @@ import Reply from '../reply/Reply'
         components:{ NewReply, Reply },
         props: ['data'],
         computed: {
-            body(){
-                return md.parse(this.data.body)
+            // body(){
+            //     return md.parse(this.data.body)
+            // }
+        },
+        computed:{
+            loggIn(){
+                return User.loggedIn()
             }
         },
         created(){

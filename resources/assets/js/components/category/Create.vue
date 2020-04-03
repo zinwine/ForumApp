@@ -1,21 +1,24 @@
 <template>
     <v-container fluid>
+            <!-- <v-alert v-if="errors" type="error">
+                {{ errors }} 
+            </v-alert> -->
             <form @submit.prevent="edit_mode ? editCategory(form.slug) : createCategory()" class="col-md-6 offset-md-3">
                 <div style="margin-bottom: 20px;color: #fff;background: indigo;text-align:center">
                         <v-toolbar-title style="padding: 10px" v-if="edit_mode">Edit Category</v-toolbar-title>
                         <v-toolbar-title style="padding: 10px" v-else>Create Category</v-toolbar-title>
                     </div>
+               <span v-if="errors" style="color: red">{{ errors.name[0] }} </span>
                 <v-text-field
                 v-model="form.name"
                 label="Title"
                 required
                 ></v-text-field>
-               
                 <div v-if="edit_mode">
-                    <v-btn style="background: indigo; color: white" type="submit" >Update</v-btn>
+                    <v-btn style="background: indigo; color: white" :disabled="disable" type="submit" >Update</v-btn>
                     <v-btn @click="cancel">Cancel</v-btn>
                 </div>
-                <v-btn v-else style="background: indigo; color: white" type="submit" >Create</v-btn>
+                <v-btn v-else style="background: indigo; color: white" :disabled="disable" type="submit" >Create</v-btn>
             </form>
 
         <v-container fluid class="col-md-8 offset-md-2">
@@ -58,8 +61,14 @@ import User from '../../helpers/User'
                     name: null,
                 },
                 categories: {},
-                edit_mode: false
+                edit_mode: false,
+                errors: null
                 // editSlug:null
+            }
+        },
+        computed: {
+            disable(){
+                // return !(this.form.name)
             }
         },
         created(){
@@ -79,7 +88,7 @@ import User from '../../helpers/User'
                     // this.categories.unshift(res.data)
                 })
                 .catch( (err) => {
-                    console.log(err.data)
+                    this.errors = err.response.data.errors
                 })
             },
             getCategory(){
@@ -89,7 +98,7 @@ import User from '../../helpers/User'
                     this.categories = res.data.data
                 })
                 .catch( (err) => {
-                    console.log(err.data)
+                    this.errors = err.response.data.errors
                 })
             },
             deleteCate(slug, index){
@@ -102,7 +111,7 @@ import User from '../../helpers/User'
                     this.categories.splice(index,1)
                 })
                 .catch( (err) => {
-                    console.log(err.data)
+                    this.errors = err.response.data.errors
                 })
             },
             // editCate(index){
@@ -126,7 +135,7 @@ import User from '../../helpers/User'
                     // this.categories.unshift(res.data)
                 })
                 .catch( (err) => {
-                    console.log(err.data)
+                    this.errors = err.response.data.errors
                 })
             },
             cancel(){
